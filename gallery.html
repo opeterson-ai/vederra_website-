@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Gallery | Vederra Modular</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css" /></head>
+<body>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="index.html"><img src="assets/images/logo-wordmark.png" alt="Vederra" class="brand-text" /></a><button class="nav-toggle" aria-expanded="false">Menu</button><nav class="site-nav"><ul><li><a href="index.html">Home</a></li><li><a href="alt-mod.html">Alt-Mod</a></li><li><a class="active" href="gallery.html">Gallery</a></li><li><a href="news.html">News</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></nav></div></header>
+<main class="gallery-page" style="padding-top:72px;">
+<section class="hero"><div class="hero-bg parallax-layer" data-parallax data-speed="0.18" style="background-image:url('assets/images/project-lodo.jpg');"></div><div class="container"><p class="hero-kicker">Gallery</p><h1>Streamline Production.<br />Reduce Costs.<br />Expedite Construction.</h1><p><a class="btn btn-secondary" href="contact.html">Learn More About Our Process</a></p></div></section>
+
+<!-- Category filter tabs (switch which photos load into the 3D deck) -->
+<div class="gallery-filter">
+  <div class="container">
+    <div class="filter-tabs" role="tablist" aria-label="Filter gallery by category">
+      <button class="filter-tab is-active" role="tab" aria-selected="true" data-filter="all">All</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="inside">Inside</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="outside">Outside</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="factory">Factory</button>
+      <span class="filter-indicator" aria-hidden="true"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 3D coverflow deck (scroll-driven, pinned). JS adds .deck-mode on desktop;
+     without it, the cards fall back to a responsive grid. -->
+<section class="deck-stage" data-deck>
+  <div class="deck-sticky">
+    <div class="deck">
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/interior-kitchen.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/interior-royaloak-2.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/interior-royaloak-1.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/interior-living.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/inside/inside-01.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/inside/inside-02.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/inside/inside-03.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/inside/inside-04.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/inside/inside-05.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/inside/inside-06.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/inside/inside-07.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="inside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/inside/inside-08.jpg" alt="Vederra modular home interior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/exterior-front-angle.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/hero-home.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/project-walkup-2.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/project-balsam.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/project-fourplex.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/project-modern1.png" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-01.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-02.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-03.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-04.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-05.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-06.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-07.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-08.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-09.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-10.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-11.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-12.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-13.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="outside" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/outside/outside-14.jpg" alt="Vederra modular building exterior" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="factory" tabindex="0" role="button" aria-label="View image"><img src="assets/images/factory-016.jpg" alt="Vederra modular factory production" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="factory" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/factory/factory-01.jpg" alt="Vederra modular factory production" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="factory" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/factory/factory-02.jpg" alt="Vederra modular factory production" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="factory" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/factory/factory-03.jpg" alt="Vederra modular factory production" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="factory" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/factory/factory-04.jpg" alt="Vederra modular factory production" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="factory" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/factory/factory-05.jpg" alt="Vederra modular factory production" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="factory" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/factory/factory-06.jpg" alt="Vederra modular factory production" loading="lazy" /></figure>
+      <figure class="deck-card" data-category="factory" tabindex="0" role="button" aria-label="View image"><img src="assets/images/gallery/factory/factory-07.jpg" alt="Vederra modular factory production" loading="lazy" /></figure>
+    </div>
+    <p class="deck-counter" aria-hidden="true">1 / 40</p>
+    <p class="deck-hint" aria-hidden="true">Scroll to explore &darr;</p>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="container"><div class="footer-bottom"><a href="https://maps.app.goo.gl/mdMY9gyh9hB6jxCd9" target="_blank" rel="noopener">22100 E 26th Avenue, Aurora, CO 80019</a> | <a href="tel:3032850123">(303) 285-0123</a> | <a href="mailto:info@vederra.com">info@vederra.com</a> | <a href="privacy-policy-2.html">Privacy Policy</a></div></div></footer>
+
+<!-- Lightbox overlay (progressive enhancement; built/controlled by script.js) -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button class="lightbox-close" aria-label="Close (Esc)">&times;</button>
+  <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#8249;</button>
+  <figure class="lightbox-stage">
+    <img class="lightbox-img" src="" alt="" />
+  </figure>
+  <button class="lightbox-nav lightbox-next" aria-label="Next image">&#8250;</button>
+</div>
+
+<script src="script.js"></script>
+</body></html>
