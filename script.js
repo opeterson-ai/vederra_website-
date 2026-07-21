@@ -1086,8 +1086,13 @@
 
     rebuildLightboxSet();
 
-    // ── Mode gate: fallback to the CSS grid on mobile / reduced-motion ──
-    const deckMode = !reduce && window.innerWidth > MOBILE_BP;
+    // ── Mode gate ──
+    // The gallery now uses a responsive tile grid on ALL viewports (per
+    // request — the pinned 3D coverflow made the page very long to scroll).
+    // The coverflow code below is kept but disabled; flip `useCoverflow` to
+    // re-enable it on desktop.
+    const useCoverflow = false;
+    const deckMode = useCoverflow && !reduce && window.innerWidth > MOBILE_BP;
     if (!deckMode) return; // filters + lightbox already wired; CSS renders the grid
 
     stage.classList.add('deck-mode');
