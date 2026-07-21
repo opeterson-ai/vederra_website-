@@ -38,12 +38,14 @@
     navToggle.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('nav-open', open);
     });
 
     nav.querySelectorAll('a').forEach((a) => {
       a.addEventListener('click', () => {
         nav.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
       });
     });
   }
@@ -788,7 +790,7 @@
     if (!main) return;
 
     const reduce = prefersReduced.matches;
-    const allowPin = window.innerWidth >= 768 && !reduce;
+    const allowPin = window.innerWidth > MOBILE_BP && !reduce;
 
     main.classList.add('reveal-ready');
     if (allowPin) main.classList.add('is-pinned');
@@ -1085,7 +1087,7 @@
     rebuildLightboxSet();
 
     // ── Mode gate: fallback to the CSS grid on mobile / reduced-motion ──
-    const deckMode = !reduce && window.innerWidth >= 768;
+    const deckMode = !reduce && window.innerWidth > MOBILE_BP;
     if (!deckMode) return; // filters + lightbox already wired; CSS renders the grid
 
     stage.classList.add('deck-mode');

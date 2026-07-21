@@ -100,6 +100,12 @@ a:hover { color: var(--brand-dark); }
 .hamburger { top: 50%; transform: translateY(-50%); }
 .hamburger::before { content: ''; top: -7px; }
 .hamburger::after { content: ''; top: 7px; }
+/* Open state: morph the hamburger into an X */
+.nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
+.nav-toggle[aria-expanded="true"] .hamburger::before { top: 0; transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .hamburger::after { top: 0; transform: rotate(-45deg); }
+/* Lock page scroll while the mobile menu is open */
+body.nav-open { overflow: hidden; }
 
 .site-nav ul {
   list-style: none;
@@ -879,12 +885,17 @@ textarea { min-height: 150px; resize: vertical; }
   .nav-toggle { display: flex; align-items: center; justify-content: center; }
   .site-nav {
     position: fixed;
-    top: 72px; left: 0; right: 0; bottom: 0;
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(12px);
+    top: 72px; left: 0; right: 0;
+    /* Explicit viewport-relative height instead of bottom:0 — the header's
+       backdrop-filter makes it the containing block for fixed children, so
+       bottom:0 would collapse to the header. svh/dvh stay viewport-relative. */
+    height: calc(100vh - 72px);
+    height: calc(100svh - 72px);
+    background: #fff;
     display: none;
     padding: 2rem 1.5rem;
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .site-nav.open { display: block; }
   .site-nav ul { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
@@ -904,9 +915,17 @@ textarea { min-height: 150px; resize: vertical; }
 
 @media (max-width: 640px) {
   .container { width: calc(100% - 2rem); }
-  .hero { min-height: 90vh; }
+  .hero { min-height: 90vh; min-height: 90svh; }
   .hero-content { padding: 4rem 0 3rem; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
+  /* Stronger, bottom-weighted scrim so hero text stays legible over any
+     photo when it spans the full narrow width. */
+  .hero-overlay {
+    background: linear-gradient(to bottom, rgba(5,15,30,0.6) 0%, rgba(5,15,30,0.4) 45%, rgba(5,15,30,0.82) 100%);
+  }
+  .hero:not(.cin-section)::after {
+    background: linear-gradient(to bottom, rgba(5,15,30,0.55) 0%, rgba(5,15,30,0.4) 45%, rgba(5,15,30,0.8) 100%) !important;
+  }
   .advantage-stage { min-height: auto; padding: 4rem 0; }
   .pillars-section, .expertise-section, .showcase-section, .partners-section, .news-section { padding: 4rem 0; }
   .showcase-grid { grid-template-columns: 1fr; }
@@ -978,7 +997,7 @@ textarea { min-height: 150px; resize: vertical; }
   .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
   .footer-brand { grid-column: auto; }
 
-  .altmod-hero-sticky { height: 70vh; min-height: 420px; }
+  .altmod-hero-sticky { height: 70vh; height: 70svh; min-height: 420px; }
   .altmod-hero-logo { width: min(420px, 86%); }
   .altmod-what,
   .altmod-advantage,
@@ -1250,7 +1269,11 @@ textarea { min-height: 150px; resize: vertical; }
 body.lightbox-open { overflow: hidden; }
 
 @media (max-width: 860px) {
-  .gallery-filter { top: 56px; }
+  .gallery-filter { top: 72px; } /* flush below the 72px fixed header */
+  /* Comfortable tap targets + horizontal scroll if the tabs don't fit */
+  .filter-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+  .filter-tab { min-height: 44px; padding: 0.6rem 1.2rem; flex: 0 0 auto; }
   .gallery-page.reveal-ready .gal-tile { opacity: 1 !important; transform: none !important; }
   .gallery-page .image-wall figcaption { opacity: 1; transform: none; } /* always show on touch */
   .lightbox-nav { width: 44px; height: 44px; font-size: 2rem; }
@@ -1294,7 +1317,7 @@ body.lightbox-open { overflow: hidden; }
 .altmod-main { background: var(--dark); }
 .altmod-hero { position: relative; }
 .altmod-hero-sticky {
-  position: relative; height: 82vh; min-height: 460px;
+  position: relative; height: 82vh; height: 82svh; min-height: 460px;
   overflow: hidden; display: flex; align-items: center;
 }
 .altmod-hero-video {
@@ -1404,7 +1427,7 @@ body.lightbox-open { overflow: hidden; }
 @media (max-width: 860px) {
   .altmod-stats { grid-template-columns: 1fr; }
   .altmod-panels-grid { grid-template-columns: 1fr; }
-  .altmod-hero-sticky { height: 78vh; }
+  .altmod-hero-sticky { height: 78vh; height: 78svh; }
 }
 
 /* ── Reduced motion ── */
@@ -1575,7 +1598,7 @@ body.fx-ready figure:hover img { transform: scale(1.06); }
    ═══════════════════════════════════════════════════════ */
 .deck-stage { position: relative; background: var(--dark); }
 .deck-sticky {
-  position: sticky; top: 0; height: 100vh;
+  position: sticky; top: 0; height: 100vh; height: 100dvh;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; perspective: 1600px;
   background: radial-gradient(1000px 600px at 50% 40%, rgba(23,145,219,0.16), transparent 70%), var(--dark);
@@ -1616,7 +1639,18 @@ body.fx-ready figure:hover img { transform: scale(1.06); }
 }
 .deck-stage:not(.deck-mode) .deck-card {
   position: static; top: auto; left: auto; width: auto;
+  aspect-ratio: 3 / 2; /* uniform tiles */
   transform: none !important; opacity: 1 !important; filter: none !important;
 }
+.deck-stage:not(.deck-mode) .deck-card img { width: 100%; height: 100%; object-fit: cover; }
 .deck-stage:not(.deck-mode) .deck-counter,
 .deck-stage:not(.deck-mode) .deck-hint { display: none; }
+
+/* Phones: a tidy 2-column thumbnail grid (taps open the lightbox) */
+@media (max-width: 640px) {
+  .deck-stage:not(.deck-mode) .deck {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem; width: calc(100% - 1.5rem);
+  }
+  .deck-stage:not(.deck-mode) .deck-card { border-radius: 12px; }
+}
