@@ -1094,7 +1094,9 @@
     let stageTop = 0;
     let track = 1;
     let vh = 1;
-    let ticking = false;
+    let targetF = 0;   // deck position the scroll asks for
+    let curF = 0;      // eased position actually rendered (decoupled from scroll cadence)
+    let rafId = null;
 
     function layoutSizing() {
       vh = Math.max(window.innerHeight, 1);
@@ -1104,31 +1106,68 @@
       track = Math.max(1, stage.offsetHeight - vh);
     }
 
-    function position() {
+    function computeTarget() {
+      const n = Math.max(1, activeCards().length);
+      const pp = clamp((window.scrollY - stageTop) / track, 0, 1);
+      targetF = pp * Math.max(0, n - 1);
+      if (hint) hint.classList.toggle('is-hidden', pp > 0.02);
+    }
+
+    // Draw the deck at the current eased position. Only writes style props
+    // that actually changed since last frame so blur/opacity/z-index don't
+    // trigger needless repaints while transforms animate every frame.
+    function render() {
       const act = activeCards();
       const n = act.length;
-      const pp = clamp((window.scrollY - stageTop) / track, 0, 1);
-      const f = pp * Math.max(0, n - 1);
+      const f = curF;
       act.forEach((card, j) => {
         const off = j - f;
         const a = Math.abs(off);
-        if (a > 4.6) { card.style.opacity = '0'; card.style.pointerEvents = 'none'; card.style.zIndex = '0'; card.classList.remove('is-front'); return; }
+        const s = card._deck || (card._deck = {});
+        if (a > 4.6) {
+          if (s.hidden !== true) {
+            card.style.opacity = '0'; card.style.pointerEvents = 'none';
+            card.style.zIndex = '0'; card.classList.remove('is-front');
+            s.hidden = true; s.blur = -1; s.front = false;
+          }
+          return;
+        }
         const tx = off * 300;
         const tz = -Math.min(a, 5) * 240;
         const ry = clamp(-off * 22, -55, 55);
         const sc = Math.max(0.62, 1 - a * 0.12);
-        card.style.opacity = '1';
-        card.style.pointerEvents = a < 0.5 ? 'auto' : 'none';
-        card.style.filter = a < 0.4 ? 'none' : `blur(${Math.min(a * 1.6, 6)}px)`;
-        card.style.zIndex = String(1000 - Math.round(a * 10));
-        card.style.transform = `translate(-50%, -50%) translate3d(${tx}px, 0, ${tz}px) rotateY(${ry}deg) scale(${sc})`;
-        card.classList.toggle('is-front', a < 0.5);
+        card.style.transform = `translate(-50%, -50%) translate3d(${tx.toFixed(2)}px, 0, ${tz.toFixed(2)}px) rotateY(${ry.toFixed(2)}deg) scale(${sc.toFixed(3)})`;
+        if (s.hidden !== false) { card.style.opacity = '1'; s.hidden = false; }
+        const front = a < 0.5;
+        if (s.front !== front) {
+          card.style.pointerEvents = front ? 'auto' : 'none';
+          card.classList.toggle('is-front', front);
+          s.front = front;
+        }
+        // Quantize blur so we only rewrite the (costly) filter when it steps.
+        const blur = a < 0.4 ? 0 : Math.min(Math.round(a * 1.6), 6);
+        if (s.blur !== blur) {
+          card.style.filter = blur ? `blur(${blur}px)` : 'none';
+          s.blur = blur;
+        }
       });
       if (counter) counter.textContent = (Math.round(clamp(f, 0, n - 1)) + 1) + ' / ' + n;
-      if (hint) hint.classList.toggle('is-hidden', pp > 0.02);
     }
 
-    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; position(); }); } }
+    // Ease curF toward targetF each frame; stop the loop once settled.
+    function tick() {
+      const diff = targetF - curF;
+      if (Math.abs(diff) < 0.0015) { curF = targetF; render(); rafId = null; return; }
+      curF += diff * 0.16;
+      render();
+      rafId = requestAnimationFrame(tick);
+    }
+    function startTick() { if (rafId == null) rafId = requestAnimationFrame(tick); }
+
+    // Instant snap — used on load, resize and filter changes (no easing).
+    function position() { computeTarget(); curF = targetF; if (rafId != null) { cancelAnimationFrame(rafId); rafId = null; } render(); }
+
+    function onScroll() { computeTarget(); startTick(); }
 
     layoutSizing();
     position();
