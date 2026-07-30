@@ -1654,3 +1654,49 @@ body.fx-ready figure:hover img { transform: scale(1.06); }
   }
   .deck-stage:not(.deck-mode) .deck-card { border-radius: 12px; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   BLOG
+   Index post grid + cards extend the shared .news-list /
+   .news-item components; article pages extend .article.
+   ═══════════════════════════════════════════════════════ */
+
+/* Index: responsive card grid (reuses .news-list display:grid) */
+.blog-list {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.4rem;
+  margin-top: 1.6rem;
+}
+.blog-card { padding: 1.2rem; display: flex; flex-direction: column; }
+.blog-card-thumb {
+  display: block;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  aspect-ratio: 16 / 10;
+  background: var(--bg);
+}
+.blog-card-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.blog-card h3 { margin: 0 0 0.4rem; font-size: 1.2rem; }
+.blog-card h3 a { color: var(--text); }
+.blog-card h3 a:hover { color: var(--brand); }
+.blog-card .news-meta { margin-bottom: 0.5rem; }
+.blog-card p { margin: 0 0 0.6rem; }
+.blog-card p:last-child { margin-bottom: 0; margin-top: auto; padding-top: 0.4rem; }
+
+/* Article: comfortable reading column
+   (article.blog-article beats the base article.article max-width/padding) */
+article.blog-article { max-width: 760px; padding: 2.4rem 1.4rem; }
+.blog-article .section-label { margin-bottom: 0.8rem; }
+.blog-article h1 { font-size: clamp(1.8rem, 4.2vw, 2.6rem); margin-bottom: 0.6rem; }
+.blog-article .meta { margin-bottom: 1.8rem; }
+.blog-article .blog-body > * { margin-bottom: 1.15rem; }
+.blog-article .blog-body h2 { margin-top: 2.2rem; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+.blog-article figure { margin: 1.8rem 0; }
+.blog-article figure img { width: 100%; border-radius: var(--radius-md); }
+.blog-article figcaption { margin-top: 0.5rem; font-size: 0.85rem; color: var(--muted); text-align: center; }
+.blog-hero { margin-top: 0.4rem; }
+
+/* Subtle, smooth cin reveal for article content on all viewports
+   (base .cin-el has transition:none; this keeps blog reveals gentle) */
+.blog-article .cin-el { transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }

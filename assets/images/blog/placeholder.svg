@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Vederra Blog">
+  <defs>
+    <linearGradient id="vg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e6ba8"/>
+      <stop offset="1" stop-color="#1791db"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#vg)"/>
+  <!-- blueprint grid -->
+  <g stroke="rgba(255,255,255,0.10)" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="100" y1="0" x2="100" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="300" y1="0" x2="300" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="500" y1="0" x2="500" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="700" y1="0" x2="700" y2="500"/>
+  </g>
+  <!-- stacked modular units -->
+  <g fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.55)" stroke-width="3">
+    <rect x="322" y="175" width="78" height="60" rx="4"/>
+    <rect x="400" y="175" width="78" height="60" rx="4"/>
+    <rect x="322" y="235" width="78" height="60" rx="4"/>
+    <rect x="400" y="235" width="78" height="60" rx="4"/>
+  </g>
+  <text x="400" y="360" text-anchor="middle" font-family="Inter, -apple-system, Segoe UI, sans-serif"
+        font-size="30" font-weight="700" letter-spacing="3" fill="rgba(255,255,255,0.92)">VEDERRA BLOG</text>
+</svg>

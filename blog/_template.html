@@ -1,0 +1,112 @@
+<!--
+  ═══════════════════════════════════════════════════════════════════════════
+  VEDERRA BLOG — ARTICLE TEMPLATE  (this file is never published)
+  ═══════════════════════════════════════════════════════════════════════════
+  HOW TO PUBLISH A POST — no code required:
+
+  1. COPY THIS FILE and rename the copy as your publish date + a short,
+     lowercase, hyphenated version of the title:
+         YYYY-MM-DD-title-slug.html
+     Example:  2026-07-30-why-modular-builds-faster.html
+     Save it in this same  blog/  folder.
+
+  2. REPLACE every  POST TITLE ,  YYYY-MM-DD ,  AUTHOR NAME , and anything
+     marked  TODO . Don't forget the <title>, <meta name="publish-date">, and
+     <meta name="description"> tags in the <head> below.
+
+  3. ADD YOUR IMAGES to the  assets/images/blog/  folder (in the project root),
+     then point each <img src> at  ../assets/images/blog/YOUR-IMAGE.jpg .
+     No image? Use  ../assets/images/blog/placeholder.svg .
+
+  4. OPEN  blog/index.html , find the "NEW BLOG POSTS" marker near the top of the
+     post grid, and paste a filled-in copy of the example card directly below it
+     (newest posts always go on top).
+
+  5. COMMIT AND PUSH to  main  — the site deploys automatically.
+
+  NOTE: The name of this template starts with "_", which marks it as NOT a real
+  post. It never gets a card on the index and is never published. Only your
+  renamed copies become live posts. You never need to touch CSS or JavaScript.
+  ═══════════════════════════════════════════════════════════════════════════
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POST TITLE — Vederra Modular Blog</title>
+  <meta name="publish-date" content="YYYY-MM-DD">
+  <meta name="description" content="ONE-SENTENCE SUMMARY">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="Vederra home">
+        <img src="../assets/images/logo-wordmark.png" alt="Vederra" class="brand-text" />
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu"><span class="hamburger"></span></button>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../alt-mod.html">Alt-Mod</a></li>
+          <li><a href="../gallery.html">Gallery</a></li>
+          <li><a href="../news.html">News</a></li>
+          <li><a class="active" href="index.html">Blog</a></li>
+          <li><a href="../careers.html">Careers</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" style="padding-top:72px;">
+    <section class="section">
+      <div class="container">
+        <article class="article blog-article">
+          <p class="section-label cin-el">Vederra Blog</p>
+          <h1 class="cin-el">POST TITLE</h1>
+          <p class="meta cin-el">By AUTHOR NAME &middot; <time datetime="YYYY-MM-DD">Month D, YYYY</time></p>
+
+          <!-- Optional featured image. Delete this whole <figure> if you don't want one. -->
+          <figure class="blog-hero cin-el">
+            <img src="../assets/images/blog/IMAGE.jpg" alt="TODO: describe this image" />
+            <figcaption>TODO: optional caption or photo credit</figcaption>
+          </figure>
+
+          <div class="blog-body">
+            <p class="cin-el">TODO: Write your opening paragraph. Introduce the topic and why it
+              matters to affordable-housing developers, partners, or the community.</p>
+
+            <h2 class="cin-el">TODO: Section heading</h2>
+            <p class="cin-el">TODO: Body paragraph. Keep paragraphs focused and readable.</p>
+            <p class="cin-el">TODO: Another paragraph if needed.</p>
+
+            <blockquote class="cin-el">TODO: An optional pull quote to highlight a key point.</blockquote>
+
+            <!-- Optional inline image. Delete this <figure> if you don't need it. -->
+            <figure class="cin-el">
+              <img src="../assets/images/blog/IMAGE-2.jpg" alt="TODO: describe this image" />
+              <figcaption>TODO: optional caption</figcaption>
+            </figure>
+
+            <h2 class="cin-el">TODO: Another section heading</h2>
+            <p class="cin-el">TODO: Continue the article. Wrap up with a closing thought or a call to action.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">22100 E 26th Avenue, Aurora, CO 80019 | <a href="tel:3032850123">(303) 285-0123</a> | <a href="../privacy-policy-2.html">Privacy Policy</a></div>
+    </div>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>
